@@ -1,0 +1,24 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 10%;
+    align-items: left;
+    gap : 20px;
+    padding: 5% 10%;
+    border-radius: 20px;
+    .row{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .rightContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 10px;
+    }
+    .toggleButton{
+        padding : 0 100px;
+        height: 50px;
+    }
+}
