@@ -1,0 +1,29 @@
+/* styles/Footer.module.css */
+.footer {
+    background-color: #07306E;
+    color: white;
+    padding: 5% 10%;
+    margin-top: 20px;
+    // position: fixed;
+    display: flex;
+    flex-direction: column;
+    // width: 100%;
+    bottom: 0;
+  }
+  
+  .socialMedia {
+    margin-top: 10px;
+  }
+  
+  .exploreTab {
+    margin-top: 10px;
+  }
+  
+  .contactInfo {
+    margin-top: 10px;
+  }
+  
+  .bookAppointment {
+    margin-top: 10px;
+  }
+  

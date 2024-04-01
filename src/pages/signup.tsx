@@ -5,16 +5,21 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';import { useStat
 
 import styles from '@/styles/signup.module.scss';
 import { Medication, Person } from '@mui/icons-material';
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, Typography } from '@mui/material'
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const SignUp = ()=>{
+    const router = useRouter();
+
     const [userType, setUserType] = useState<string | null>('patient');
     const [name , setName] = useState('');
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
     const [rePassword , setRePassword] = useState('');
     const [phoneNumber , setPhoneNumber] = useState('');
+    const [feedback , setFeedback] = useState('');
 
   const handleUserType = (
     event: React.MouseEvent<HTMLElement>,
@@ -23,14 +28,74 @@ const SignUp = ()=>{
     setUserType(newUserType);
   };
 
+  const handleSignUp = async ()=>{
+    if(name===null || name.length === 0){
+        setFeedback("Please enter a name")
+        return;
+    }
+    if(email===null || email.length === 0){
+        setFeedback("Please enter a Email address")
+        return;
+    }
+    if(password===null || password.length <= 5){
+        setFeedback("Please enter a Valid Password of minimum length 6")
+        return;
+    }
+    if(rePassword===null || rePassword.length === 0){
+        setFeedback("Please Re enter the Password")
+        return;
+    }
+    if(rePassword !== password){
+        setFeedback("Please check and re enter the Password")
+        return;
+    }
+    if(phoneNumber===null || phoneNumber.length < 10){
+        setFeedback("Please enter a Valid Phone Number")
+        return;
+    }
+
+    const response = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL +
+          `/api/auth/signup/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            name,
+            email,
+            password,
+            phoneNumber,
+          }),
+        },
+      );
+  
+      // Handle success response if needed
+      const _data = await response.json();
+      console.log(_data)
+  
+      if (!response.ok) {
+        // setFeedback("")
+        setFeedback(_data.error);
+        // setCreatingVM(false);
+        return;
+      }
+      setFeedback("")
+      router.replace("/dashboard");
+  }
   return (
     <Card className={styles.mainContainer}>
-      <Image
-        src="/images/doc_pic1.png"
-        alt="doctor image"
-        width={"500"}
-        height={500}
-      />
+      <div className={styles.leftContainer}>
+        <Image
+          src="/images/doc_pic1.png"
+          alt="doctor image"
+          width={"500"}
+          height={500}
+          objectFit="cover"
+        />
+      </div>
+
       <div className={styles.rightContainer}>
         <ToggleButtonGroup
           value={userType}
@@ -72,7 +137,7 @@ const SignUp = ()=>{
           label="Email"
           value={email}
           onChange={(event) => {
-            setName(event.target.value);
+            setEmail(event.target.value);
           }}
         />
         <TextField
@@ -80,7 +145,7 @@ const SignUp = ()=>{
           label="Password"
           value={password}
           onChange={(event) => {
-            setName(event.target.value);
+            setPassword(event.target.value);
           }}
         />
         <TextField
@@ -88,7 +153,7 @@ const SignUp = ()=>{
           label="Re Enter Password"
           value={rePassword}
           onChange={(event) => {
-            setName(event.target.value);
+            setRePassword(event.target.value);
           }}
         />
         <TextField
@@ -96,20 +161,28 @@ const SignUp = ()=>{
           label="Phone Number"
           value={phoneNumber}
           onChange={(event) => {
-            setName(event.target.value);
+            setPhoneNumber(event.target.value);
           }}
         />
+        <Typography variant="h6" color="red">{feedback}</Typography>
         <Button
-        style={{
-            borderRadius:"15px",
-            height:"40px",
-        }}
+          style={{
+            borderRadius: "15px",
+            height: "45px",
+          }}
           variant="contained"
-          color="primary" 
-          
+          color="primary"
+          onClick={handleSignUp}
         >
-          Sumbit
+          SIGNUP
         </Button>
+
+        <div className={styles.row}>
+          <text>Already Registered?</text>
+          <span>
+            <Link href={"/login"}>Login here</Link>
+          </span>
+        </div>
       </div>
     </Card>
   );

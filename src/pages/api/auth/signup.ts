@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).end(); // Method Not Allowed
   }
   await dbConnect();
-  const { first_name, last_name, email, password } = req.body;
+  const { name, email, password  , phoneNumber} = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -19,16 +19,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const newUser: UserDocument = new User({
-      first_name,
-      last_name,
+      name,
       email,
       password,
+      "phone_number" : phoneNumber
     });
 
     await newUser.save();
 
     res.status(201).json({ user: newUser });
   } catch (error) {
-    res.status(500).json({ error: 'Something went wrong' });
+    res.status(500).json({ error: `Something went wrong , ${error}`});
   }
 }

@@ -1,17 +1,17 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface UserDocument extends Document {
-  first_name: string;
-  last_name: string;
+  name : string;
   email: string;
   password: string;
+  phone_number: string;
 }
 
 const UserSchema: Schema = new Schema({
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  phone_number: { type: String, required: false, unique: true},
 });
 
 // export default mongoose.model<UserDocument>('User', UserSchema);

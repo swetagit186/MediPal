@@ -1,0 +1,13 @@
+.mainContainer{
+    background-color: #f3faff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 15px;
+    .row{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+    }
+}

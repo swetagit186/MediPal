@@ -99,6 +99,7 @@ const theme = createTheme({
     h4: typography.h4,
     h5: typography.h5,
     h6: typography.h6,
+    button: { textTransform: 'none'}
   },
 });
 
