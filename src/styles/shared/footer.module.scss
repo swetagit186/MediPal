@@ -13,17 +13,46 @@
   
   .socialMedia {
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    
+    
   }
   
+  .iconButton {
+    border-radius: "50%";
+    border-width : "2px";
+    border-color: var(--primary-color);
+    border-style: "solid";
+    padding: "12px";
+    transition: "background-color 0.3s";
+    width: "80px";
+    &:hover {
+        background-color: var(--primary-color);
+    }
+}
   .exploreTab {
-    margin-top: 10px;
+    margin-top: 30px;
+    gap: 15px;
   }
   
   .contactInfo {
-    margin-top: 10px;
+    margin-top: 30px;
+    gap: 15px;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
   }
   
   .bookAppointment {
-    margin-top: 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
   

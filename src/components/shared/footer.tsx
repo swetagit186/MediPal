@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid, Button, IconButton } from '@mui/material';
+import {Stack, Typography, Grid, Button, IconButton } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -10,27 +10,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import { useRouter } from 'next/router';
 
 import styles from "@/styles/shared/footer.module.scss";
-
-// const usestyles = makestyles((theme) => ({
-//   footer: {
-//     backgroundColor: theme.palette.primary.main,
-//     color: theme.palette.common.white,
-//     padding: theme.spacing(4),
-//     marginTop: theme.spacing(4),
-//   },
-//   socialMedia: {
-//     marginTop: theme.spacing(2),
-//   },
-//   exploreTab: {
-//     marginTop: theme.spacing(2),
-//   },
-//   contactInfo: {
-//     marginTop: theme.spacing(2),
-//   },
-//   bookAppointment: {
-//     marginTop: theme.spacing(2),
-//   },
-// }));
+import { PhoneCallback, PhoneInTalk } from '@mui/icons-material';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   // const styles = usestyles();
@@ -44,58 +25,131 @@ const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6">Brand Logo</Typography>
-          <div className={styles.socialMedia}>
-            <IconButton>
+          <Image
+            src={"/images/brand-logo-2.png"}
+            alt="Brand Logo"
+            height={60}
+            width={250}
+          />
+          <Stack direction={"row"} gap="10px" className={styles.socialMedia}>
+            <IconButton
+              className={styles.iconButton}
+              style={{
+                borderWidth: "2px",
+                borderStyle: "solid",
+                padding: "12px",
+              }}
+            >
               <FacebookIcon />
             </IconButton>
-            <IconButton>
+            <IconButton
+              className={styles.iconButton}
+              style={{
+                borderWidth: "2px",
+                borderStyle: "solid",
+                padding: "12px",
+              }}
+            >
               <TwitterIcon />
             </IconButton>
-            <IconButton>
+            <IconButton
+              className={styles.iconButton}
+              style={{
+                borderWidth: "2px",
+                borderStyle: "solid",
+                padding: "12px",
+              }}
+            >
+              <LinkedInIcon/>
+            </IconButton>
+            <IconButton
+              className={styles.iconButton}
+              style={{
+                borderWidth: "2px",
+                borderStyle: "solid",
+                padding: "12px",
+              }}
+            >
               <InstagramIcon />
             </IconButton>
-            <IconButton>
-              <LinkedInIcon />
-            </IconButton>
-          </div>
+          </Stack>
+
+          <Typography variant="h5">Crafted by Love ❤️ in India.</Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6">Explore</Typography>
-          <div className={styles.exploreTab}>
-            <Typography variant="body1" onClick={() => router.push('/licenses')}>
+          <Stack direction={"row"} justifyContent={"left"} marginTop={"20px"}>
+            <Typography variant="h4" fontWeight={600}>
+              Explore
+            </Typography>
+            <Image src="/assets/wave.svg" alt="Wave" height={20} width={80} />
+          </Stack>
+          <Stack className={styles.exploreTab}>
+            <Typography variant="h5" onClick={() => router.push("/licenses")}>
               Licenses
             </Typography>
-            <Typography variant="body1" onClick={() => router.push('/404')}>
+            <Typography variant="h5" onClick={() => router.push("/404")}>
               404 Page
             </Typography>
-            <Typography variant="body1" onClick={() => router.push('/privacy-policy')}>
+            <Typography
+              variant="h5"
+              onClick={() => router.push("/privacy-policy")}
+            >
               Privacy Policy
             </Typography>
-          </div>
+          </Stack>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6">Contact Info</Typography>
-          <div className={styles.contactInfo}>
-            <Typography variant="body1">
-              <LocationOnIcon /> Address
+          <Stack direction={"row"} justifyContent={"left"} marginTop={"20px"}>
+            <Typography variant="h4" fontWeight={600}>
+              Contact
             </Typography>
-            <Typography variant="body1">
-              <EmailIcon /> Email
+            <Image src="/assets/wave.svg" alt="Wave" height={20} width={80} />
+          </Stack>
+          <Stack className={styles.contactInfo}>
+            <Typography
+              variant="h5"
+              sx={{ alignItems: "center", display: "flex", gap: "7px" }}
+            >
+              <LocationOnIcon />
+              IIT BHU, Varanasi, UP
             </Typography>
-            <Typography variant="body1">
-              <PhoneIcon /> Phone Number
+            <Typography
+              variant="h5"
+              sx={{ alignItems: "center", display: "flex", gap: "7px" }}
+            >
+              <EmailIcon /> sweta@gmail.com
             </Typography>
-          </div>
+            <Typography
+              variant="h5"
+              sx={{ alignItems: "center", display: "flex", gap: "7px" }}
+            >
+              <PhoneIcon /> +91 9988776655
+            </Typography>
+          </Stack>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6">Book an Appointment</Typography>
+        <Grid item xs={12} sm={7} md={3} >
+        <Stack direction={"row"} justifyContent={"left"} marginTop={"20px"}>
+            <Typography variant="h4" fontWeight={600}>
+            Book Appointment
+            </Typography>
+            <Image src="/assets/wave.svg" alt="Wave" height={20} width={80} />
+          </Stack>
           <div className={styles.bookAppointment}>
-            <Typography variant="body1">
+            <Typography variant="h5">
               The Doctorate staff members are well trained professionals.
             </Typography>
-            <Button variant="contained" color="primary" onClick={handleCallButtonClick}>
-              <PhoneIcon /> Call :Phone number
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleCallButtonClick}
+              sx={{
+                borderRadius:"20px",
+                height:"50px"
+
+              }}
+              startIcon= {<PhoneInTalk />}
+            >
+                CALL +91 8877665544
             </Button>
           </div>
         </Grid>

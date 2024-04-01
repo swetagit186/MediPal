@@ -25,7 +25,9 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
         image={ doctor.gender === "male" ? "/images/doctor_pic1.png" : "/images/doctor_pic2.png"}
         alt={doctor.name}
         style={{ borderRadius: "25px", marginBottom: "8px", objectFit: "fill" }}
-      />
+      >
+        
+      </CardMedia>
       <Stack style={{position: "absolute" , marginTop : "22%"}}  direction={"row"} gap={"10px"}>
         <IconButton
           color='default'
