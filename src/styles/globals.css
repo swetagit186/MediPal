@@ -9,6 +9,7 @@
 :root{
     --primary-color :#3E8CFF;
     --secondary-color :#07306E;
+    --secondary-color-90 :rgba(7, 48, 110, 0.9);
     --color-white : white;
     --color-background : #f3faff;
 }

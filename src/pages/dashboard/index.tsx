@@ -1,11 +1,12 @@
 import Footer from "@/components/shared/footer";
 import NavBar from "@/components/shared/nav-bar";
-import {Grid,Stack, Typography, FormControl, Select, InputLabel,SelectChangeEvent , MenuItem} from "@mui/material"
+import {Grid,Stack,Box, Typography, FormControl, Select, InputLabel,SelectChangeEvent , MenuItem} from "@mui/material"
 import styles from "@/styles/dashboard.module.scss"
 import Image from "next/image";
 import { useState } from "react";
 import DoctorCard from "@/components/doctor/doctor-card";
 import { doctors } from "@/data/doctors";
+import Space from "@/components/shared/space";
 
 const Dashboard = ()=>{
 
@@ -23,7 +24,11 @@ const Dashboard = ()=>{
     return (
       <div className={styles.body}>
         <NavBar />
+        
+       
         <Stack className={styles.medicalTeam}>
+        <Box sx={{ backgroundImage: 'linear-gradient(rgba(0, 21, 52, .9), rgba(0, 21, 52, .9))', padding:"7% 10%"}}>
+
           <Stack direction={"row"} justifyContent={"center"}>
             <Image src="/assets/wave.svg" alt="Wave" height={20} width={100} />
             <Typography align="center" variant="h5" color="white">
@@ -31,6 +36,7 @@ const Dashboard = ()=>{
             </Typography>
             <Image src="/assets/wave.svg" alt="Wave" height={20} width={100} />
           </Stack>
+          <Space direction="v" value="20px"/>
           <Typography
             textAlign={"center"}
             variant="h2"
@@ -39,7 +45,9 @@ const Dashboard = ()=>{
           >
             The Doctorate Crew
           </Typography>
+          </Box>
         </Stack>
+        
         <FormControl sx={{ m: 1, minWidth: 280 , padding : "2% 10%"}}>
           <InputLabel style={{padding : "7% 35%"}} id="demo-simple-select-autowidth-label">Specialization</InputLabel>
           <Select
