@@ -1,0 +1,42 @@
+.serviceCard{
+    text-align: center;
+    background-color: #f3faff;
+    border: 2px solid #f3faff;
+    border-radius: 20px;
+    justify-content: center;
+    margin-bottom: 60px;
+    padding: 60px 25px 40px;
+    height: 70%;
+    display: block;
+    position: relative;
+    margin-top: 50px;
+    &:hover{
+        border-color: var(--primary-color);
+        background-color: white;
+    }
+}
+
+.serviceLink{
+    max-width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+}
+.serviceIcon{
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-color);
+    border: 4px solid #fff;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    position: absolute;
+    top: -12%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+    box-shadow: 1px 1px 18px 1px rgba(139, 119, 112, .3);
+}
