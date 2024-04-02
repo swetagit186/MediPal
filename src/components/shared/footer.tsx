@@ -26,10 +26,10 @@ const Footer: React.FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
           <Image
-            src={"/images/brand-logo-2.png"}
+            src={"/assets/MediPalF.svg"}
             alt="Brand Logo"
-            height={60}
-            width={250}
+            height={50}
+            width={190}
           />
           <Stack direction={"row"} gap="10px" className={styles.socialMedia}>
             <IconButton

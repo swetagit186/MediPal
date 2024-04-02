@@ -59,10 +59,10 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
           justifyContent={"space-between"}
         >
           <Image
-            src={"/images/medipal_logo.png"}
+            src={"/assets/MediPal.svg"}
             alt="Brand Logo"
-            height={60}
-            width={250}
+            height={50}
+            width={190}
           />
           <Stack direction={"row"} sx={{ alignItems:"center"}}>
             <Button variant="text" href="/dashboard" color={clickedButton === 1 ? 'primary' : 'inherit'}  onClick={() => handleClick(1)} sx={{'&:hover': {color: '#1976d2', },}}  >
