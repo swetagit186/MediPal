@@ -102,7 +102,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
                   }}
                 >
                   <Typography variant="h5" fontWeight={500}>
-                    Sign up
+                    LogIn
                   </Typography>
                 </Button>
               </LoginLink>
