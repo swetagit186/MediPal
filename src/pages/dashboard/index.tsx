@@ -105,7 +105,7 @@ const Dashboard = ({user , permission , orgainization, isAuthed, appointments }:
     const userAppointment : [Appointment] = appointments
     return (
       <div className={styles.body}>
-        {/* <NavBar user={user} isAuthed={isAuthed} /> */}
+        <NavBar user={user} isAuthed={isAuthed} />
 
         <Profile user={user} isAuthed={isAuthed} />
         <div>Deployment check 2</div>

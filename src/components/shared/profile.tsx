@@ -77,7 +77,7 @@ const Profile = ({user , isAuthed} : {user : UserDocument , isAuthed : boolean})
             email,
             phone_number : phoneNumber,
             gender,
-            _id : user._id || (Math.random()*10000).toString(),
+            // _id : user._id || (Math.random()*10000).toString(),
             user_type : userType,
             verified : false,
             bio ,
