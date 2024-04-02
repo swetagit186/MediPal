@@ -25,7 +25,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
         <Stack
           direction="row"
           gap={"10px"}
-          justifyContent="space-around"
+          justifyContent="space-between"
           margin={"0px 10%"}
         >
           <Stack direction={"row"} alignItems={"center"} justifyContent={'space-between'}>
