@@ -10,6 +10,7 @@ import services from "@/data/services";
 import {
   getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import SignUp from "../signup";
 
 export async function getServerSideProps({
   req,
@@ -53,36 +54,9 @@ const Dashboard = ({user , permission , orgainization, isAuthed}: any)=>{
       <div className={styles.body}>
         <NavBar user={user} isAuthed={isAuthed} />
         
-       
-        <Stack className={styles.medicalTeam}>
-        <Box sx={{ backgroundImage: 'linear-gradient(rgba(0, 21, 52, .9), rgba(0, 21, 52, .9))', padding:"7% 10%"}}>
-
-          <Stack direction={"row"} justifyContent={"center"}>
-            <Image src="/assets/wave.svg" alt="Wave" height={20} width={100} />
-            <Typography align="center" variant="h5" color="white">
-              OUR SERVICES
-            </Typography>
-            <Image src="/assets/wave.svg" alt="Wave" height={20} width={100} />
-          </Stack>
-          <Space direction="v" value="20px"/>
-          <Typography
-            textAlign={"center"}
-            variant="h2"
-            fontWeight={900}
-            color="white"
-          >
-            Experienced Doctors Across <br/> All Specialties
-          </Typography>
-          </Box>
-        </Stack>
+       <SignUp/>
         
-        <Grid container spacing={4} padding={"10% 10%"}>
-        {loadedServices.map((service) => (
-          <Grid item key={service.id} xs={12} sm={6} md={4}>
-            <ServiceCard service={service} />
-          </Grid>
-        ))}
-      </Grid>
+        
         <Footer />
       </div>
     );
