@@ -44,6 +44,11 @@ export async function getServerSideProps({
 
 const ContactUsPage = ({user , permission , orgainization, isAuthed}: any)=>{
 
+    const textColor = '#3E8CFF';
+    const backgroundColor="#F0F8FF";
+    const text="black";
+    const hoverColor="black";
+
   console.log(user , permission , orgainization, isAuthed);
 
     const loadedServices = services;
@@ -76,7 +81,8 @@ const ContactUsPage = ({user , permission , orgainization, isAuthed}: any)=>{
           </Typography>
           </Box>
         </Stack>
-        <ContactUs />
+        <ContactUs textColor={textColor} backgroundColor={backgroundColor} text={text} hoverColor={hoverColor} />
+       
         
         <Footer />
       </div>

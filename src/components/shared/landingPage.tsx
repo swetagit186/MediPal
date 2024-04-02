@@ -10,12 +10,17 @@ import Footer from "./footer";
 
 
 const LandingPage = ({user , isAuthed} :  {user : any , isAuthed : boolean}) => {
+
+    const textColor = '#3E8CFF';
+    const backgroundColor="#07306E";
+    const text="white";
+    const hoverColor="white";
     return (
       <div>
         <NavBar user={user} isAuthed={isAuthed} />
         <HeroPage />
         <About/>
-        <ContactUs/>
+        <ContactUs textColor={textColor} backgroundColor={backgroundColor}  text={text} hoverColor={hoverColor}/>
         <Testimonials />
         <Footer/>
       </div>
