@@ -33,8 +33,9 @@ export async function getServerSideProps({
   if(isAuthed && user) {
     const fullName = user?.given_name + " " + user?.family_name;
     const id = user?.id;
+    console.log(fullName, id);
 
-    if(process.env.NEXT_PUBLIC_BASE_URL) {
+    if(process.env.NEXT_PUBLIC_BASE_URL !== null || process.env.NEXT_PUBLIC_BASE_URL !== undefined ) {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
         {
