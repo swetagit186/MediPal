@@ -35,35 +35,35 @@ export async function getServerSideProps({
   if(isAuthed && user) {
     const fullName = user?.given_name + " " + user?.family_name;
     if (process.env.NEXT_PUBLIC_BASE_URL) {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: fullName,
-            email: user?.email || "",
-            phone_number: "",
-            gender: "",
-            _id: user.id,
-            user_type: "patient",
-            verified: false,
-            bio: "",
-            specialisation: null,
-          }),
-        }
-      );
+      // const response = await fetch(
+      //   process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       name: fullName,
+      //       email: user?.email || "",
+      //       phone_number: "",
+      //       gender: "",
+      //       _id: user.id,
+      //       user_type: "patient",
+      //       verified: false,
+      //       bio: "",
+      //       specialisation: null,
+      //     }),
+      //   }
+      // );
 
-      // Handle success response if needed
-      const _data = await response.json();
-      console.log(_data);
+      // // Handle success response if needed
+      // const _data = await response.json();
+      // console.log(_data);
 
-      if (!response.ok) {
-      } else {
-        user = _data.user;
-      }
+      // if (!response.ok) {
+      // } else {
+      //   user = _data.user;
+      // }
     }
   }
   return {

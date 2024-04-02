@@ -36,35 +36,35 @@ export async function getServerSideProps({
     console.log(fullName, id);
 
     if(process.env.NEXT_PUBLIC_BASE_URL !== null || process.env.NEXT_PUBLIC_BASE_URL !== undefined ) {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: fullName,
-            email: user?.email || "",
-            phone_number: "",
-            gender: "",
-            _id: user.id,
-            user_type: "patient",
-            verified: false,
-            bio: "",
-            specialisation: null,
-          }),
-        }
-      );
+      // const response = await fetch(
+      //   process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       name: fullName,
+      //       email: user?.email || "",
+      //       phone_number: "",
+      //       gender: "",
+      //       _id: user.id,
+      //       user_type: "patient",
+      //       verified: false,
+      //       bio: "",
+      //       specialisation: null,
+      //     }),
+      //   }
+      // );
 
-      // Handle success response if needed
-      const _data = await response.json();
-      console.log(_data);
+      // // Handle success response if needed
+      // const _data = await response.json();
+      // console.log(_data);
 
-      if (!response.ok) {
-      } else {
-        user = _data.user;
-      }
+      // if (!response.ok) {
+      // } else {
+      //   user = _data.user;
+      // }
       const responseAppointment = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${id}`,
         {
