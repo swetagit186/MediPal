@@ -8,7 +8,42 @@ import DoctorCard from "@/components/doctor/doctor-card";
 import { doctors } from "@/data/doctors";
 import Space from "@/components/shared/space";
 
-const Doctor = ()=>{
+
+import {
+  getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
+
+export async function getServerSideProps({
+  req,
+  res,
+}: {
+  req: Request;
+  res: Response;
+}) {
+  const {
+    getUser,
+    getPermissions,
+    getOrganization,
+    isAuthenticated,
+  } = getKindeServerSession(req, res);
+
+  const organization = await getOrganization();
+  const permissions = await getPermissions();
+  const user = await getUser();
+  const isAuthed = await isAuthenticated();
+
+  return {
+    props: {
+      user,
+      permissions,
+      organization,
+      isAuthed,
+    },
+  };
+}
+
+
+const Doctor = ({user , permission , orgainization, isAuthed}: any)=>{
 
     const [selectedSpecialization, setSelectedSpecialization] = useState("All");
 
@@ -23,7 +58,7 @@ const Doctor = ()=>{
     };
     return (
       <div className={styles.body}>
-        <NavBar />
+        <NavBar user={user} isAuthed={isAuthed} />
         
        
         <Stack className={styles.medicalTeam}>

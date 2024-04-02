@@ -4,12 +4,14 @@ import { ThemeProvider } from '@mui/material/styles';
 
 import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
 import theme from "@/theme";
+import { KindeProvider } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-    </ThemeProvider>
-  
+    <KindeProvider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </KindeProvider>
   );
 }

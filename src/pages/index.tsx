@@ -1,33 +1,51 @@
 
-import Button from '@mui/material/Button'
 import { GetServerSideProps } from 'next';
-import dbConnect from '../lib/dbConnect';
 import LandingPage from '@/components/shared/landingPage';
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  // const response =   await dbConnect();
-  // console.log(response);
 
-  /* find all the data in our database */
-  // const result = await Pet.find({});
+import {
+  getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
-  // /* Ensures all objectIds and nested objectIds are serialized as JSON data */
-  // const pets = result.map((doc) => {
-  //   const pet = JSON.parse(JSON.stringify(doc));
-  //   return pet;
-  // });
+export async function getServerSideProps({
+  req,
+  res,
+}: {
+  req: Request;
+  res: Response;
+}) {
+  const {
+    getUser,
+    getPermissions,
+    getOrganization,
+    isAuthenticated,
+  } = getKindeServerSession(req, res);
 
-  return { props: { } };
-};
+  const organization = await getOrganization();
+  const permissions = await getPermissions();
+  const user = await getUser();
+  const isAuthed = await isAuthenticated();
+
+  return {
+    props: {
+      user,
+      permissions,
+      organization,
+      isAuthed,
+    },
+  };
+}
 
 
 
 
-export default function Home() {
+
+
+export default function Home({user , permission , orgainization, isAuthed}: any) {
   return (
       <div>
-        <LandingPage/>
+        <LandingPage user = {user} isAuthed= {isAuthed} />
       </div>
   );
 }
