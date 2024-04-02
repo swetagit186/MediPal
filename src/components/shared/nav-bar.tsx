@@ -1,6 +1,7 @@
 import {Stack, Typography, Button, IconButton , Divider} from '@mui/material';
 import React, { useState } from 'react';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Link } from '@mui/material';
 
 
 import styles from "@/styles/shared/nav-bar.module.scss"
@@ -58,12 +59,15 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
           margin={"10px 10%"}
           justifyContent={"space-between"}
         >
+          <Link href="/">
           <Image
             src={"/assets/MediPal.svg"}
             alt="Brand Logo"
             height={50}
             width={190}
           />
+          </Link>
+          
           <Stack direction={"row"} sx={{ alignItems:"center"}}>
             <Button variant="text" href="/dashboard" color={clickedButton === 1 ? 'primary' : 'inherit'}  onClick={() => handleClick(1)} sx={{'&:hover': {color: '#1976d2', },}}  >
               <Typography variant="h5" fontWeight={500}>
