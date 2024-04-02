@@ -34,56 +34,56 @@ export async function getServerSideProps({
     const fullName = user?.given_name + " " + user?.family_name;
     const user_id = user?.id;
 
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: fullName,
-          email : user?.email || "",
-          phone_number: "",
-          gender: "",
-          _id: user.id,
-          user_type: "patient",
-          verified: false,
-          bio: "",
-          specialisation: null,
-        }),
-      }
-    );
+    if(process.env.NEXT_PUBLIC_BASE_URL) {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: fullName,
+            email: user?.email || "",
+            phone_number: "",
+            gender: "",
+            _id: user.id,
+            user_type: "patient",
+            verified: false,
+            bio: "",
+            specialisation: null,
+          }),
+        }
+      );
 
-    // Handle success response if needed
-    const _data = await response.json();
-    console.log(_data);
+      // Handle success response if needed
+      const _data = await response.json();
+      console.log(_data);
 
-    if (!response.ok) {
-    }else{
+      if (!response.ok) {
+      } else {
         user = _data.user;
-    }
-    const responseAppointment = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${user_id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
-    );
+      const responseAppointment = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${user_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    // Handle success response if needed
-    const dataApp = await responseAppointment.json();
-    console.log(dataApp);
+      // Handle success response if needed
+      const dataApp = await responseAppointment.json();
+      console.log(dataApp);
 
-    if (!response.ok) {
-
-    }else{
+      if (!response.ok) {
+      } else {
         appointments = dataApp.data;
+      }
+      console.log(appointments);
     }
-    console.log(appointments);
-
 
   }
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect,useCallback } from 'react';
 import {Stack, Box, Typography, Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import styles from "@/styles/testimonials.module.scss";
 import Image from 'next/image';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import styles from '@/styles/testimonials.module.scss'
 
 interface Testimonial {
   id: number;
