@@ -31,7 +31,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
           <Stack direction={"row"} alignItems={"center"} justifyContent={'space-between'}>
             <PhoneOutlined color="primary" />
             <Button variant="text">
-              <Typography variant="h5" fontWeight={600}>
+              <Typography variant="h5" fontWeight={500} color="black">
                 Call Us - (+91) 999 888 7770
               </Typography>
             </Button>
