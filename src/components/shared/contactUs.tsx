@@ -30,7 +30,14 @@ const theme = createTheme({
     },
   });
 
-const ContactUs=()=>{
+  interface ChildComponentProps {
+    textColor: string; // Specify the type of the textColor prop as string
+    backgroundColor:string;
+    text:string;
+    hoverColor:string;
+  }
+
+const ContactUs: React.FC<ChildComponentProps> =({textColor,backgroundColor,text,hoverColor})=>{
     const [isHovered, setIsHovered] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -56,7 +63,7 @@ const ContactUs=()=>{
     
 
     return(
-        <Box  sx={{ backgroundColor: '#07306E', minHeight: '60vh', position: 'relative' ,alignItems:'cnter',justifyContent:'center'}}>
+        <Box   sx={{ backgroundColor:{backgroundColor}, minHeight: '60vh', position: 'relative' ,alignItems:'cnter',justifyContent:'center'}}>
             <ThemeProvider theme={theme} >
     <Stack 
       position="absolute"
@@ -75,15 +82,15 @@ const ContactUs=()=>{
         {/* Example of using Typography with custom font and boldness */}
         <Stack direction="row" align-items="center" justifyContent="items-start" spacing={2}>
           <Image src="/assets/heartline.svg" alt="bubble" height={40} width={40}></Image>
-          <Typography variant="h6" fontWeight="bold" color="primary">
+          <Typography variant="h6" fontWeight="bold" style={{ color: textColor }}>
           GET AN APPOINTMENT
         </Typography>
         </Stack>
         
-        <Typography variant="h3" fontWeight="bold" color="white">
+        <Typography variant="h3" fontWeight="bold" style={{ color: text }}>
         The Wide Network of Best Healthcare
         </Typography>
-        <Typography variant="h6" color="white">
+        <Typography variant="h6" style={{ color: text }}>
         Our team of highly trained professionals uses the latest healing technologies to restore you to pain-free health quickly and easily.
         </Typography>
        
@@ -208,7 +215,7 @@ const ContactUs=()=>{
         fontWeight: 'bold', 
         borderRadius: '15px',
         '&:hover': {
-          color: "white", // Change text color on hover
+          color:{hoverColor}, // Change text color on hover
           borderColor: 'primary.main', 
           
         },
@@ -220,14 +227,14 @@ const ContactUs=()=>{
       onMouseLeave={() => setIsHovered(false)}>
         BOOK AN APPOINTMENT
     </Button>
-    <Typography variant="h6" fontWeight="bold" color="white">
+    <Typography variant="h6" fontWeight="bold" style={{ color: text }}>
           (OR)
     </Typography>
     <Box display="flex" alignItems="center"  borderRadius="4px" p={1}>
-      <IconButton style={{ color: '#fff' }} sx={{ border: '3px solid',borderRadius:'15px', borderColor: 'primary.main' }}>
+      <IconButton style={{ color: text }} sx={{ border: '3px solid',borderRadius:'15px', borderColor: 'primary.main' }}>
         <Phone />
       </IconButton>
-      <Typography variant="h6" sx={{ color: '#fff'}}>123-456-7890</Typography>
+      <Typography variant="h6"  style={{ color: text }}>123-456-7890</Typography>
     </Box>
     </Stack>
       </Stack>

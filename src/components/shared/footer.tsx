@@ -26,18 +26,19 @@ const Footer: React.FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
           <Image
-            src={"/images/brand-logo-2.png"}
+            src={"/assets/MediPalF.svg"}
             alt="Brand Logo"
-            height={60}
-            width={250}
+            height={50}
+            width={190}
           />
           <Stack direction={"row"} gap="10px" className={styles.socialMedia}>
             <IconButton
               className={styles.iconButton}
               style={{
-                borderWidth: "2px",
+                borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <FacebookIcon />
@@ -45,9 +46,10 @@ const Footer: React.FC = () => {
             <IconButton
               className={styles.iconButton}
               style={{
-                borderWidth: "2px",
+                borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <TwitterIcon />
@@ -58,6 +60,7 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <LinkedInIcon/>
@@ -68,6 +71,7 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <InstagramIcon />
