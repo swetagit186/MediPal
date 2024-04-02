@@ -105,34 +105,34 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
         alt={doctor.name}
         style={{ borderRadius: "25px", marginBottom: "8px", objectFit: "fill" }}
       ></CardMedia>
-      <Stack
-        style={{ position: "absolute", marginTop: "22%" }}
-        direction={"row"}
-        gap={"10px"}
-      >
-        <IconButton
-          color="default"
-          style={{
-            backgroundColor: "#3E8CFF",
-            borderRadius: "10px",
-            marginBottom: "8px",
-          }}
-        >
-          <PhoneInTalk />
-        </IconButton>
-        <IconButton
-          color="default"
-          style={{
-            backgroundColor: "#3E8CFF",
-            borderRadius: "10px",
-            marginBottom: "8px",
-          }}
-        >
-          <EmailOutlined />
-        </IconButton>
-      </Stack>
 
-      <CardContent sx={{ margin: "0px 5%" }}>
+      <CardContent sx={{ margin: "0px 5%" ,display:"flex", flexDirection:"column", justifyContent:"center" }}>
+        <Stack
+          style={{  justifyContent : "center" , marginTop: "-12%",  }}
+          direction={"row"}
+          gap={"20px"}
+        >
+          <IconButton
+            color="default"
+            style={{
+              backgroundColor: "#3E8CFF",
+              borderRadius: "10px",
+              marginBottom: "8px",
+            }}
+          >
+            <PhoneInTalk />
+          </IconButton>
+          <IconButton
+            color="default"
+            style={{
+              backgroundColor: "#3E8CFF",
+              borderRadius: "10px",
+              marginBottom: "8px",
+            }}
+          >
+            <EmailOutlined />
+          </IconButton>
+        </Stack>
         <Typography variant="h3" align="center" fontWeight={600} gutterBottom>
           {doctor.name}
         </Typography>
@@ -150,7 +150,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
             height: "40px",
             borderRadius: "10px",
             borderBottom: "3px solid",
-            // justifyItems:"center"
+            justifyContent:"center"
           }}
           // href={"/book-appointment"}
           variant="outlined"
@@ -163,79 +163,87 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
             Book Appointment
           </Typography>
         </Button>
-       
       </CardContent>
       <Modal
-          open={modalOpen}
-          onClose={() => {
-            setFeedback("");
-            setModalOpen(false);
-            setPatientName("");
-            setPatientHistory("");
-            setPatientProblem("");
-            setDateTime(null)
+        open={modalOpen}
+        onClose={() => {
+          setFeedback("");
+          setModalOpen(false);
+          setPatientName("");
+          setPatientHistory("");
+          setPatientProblem("");
+          setDateTime(null);
+        }}
+      >
+        <Box
+          sx={{
+            ...style,
+            width: "30%",
+            borderRadius: "20px",
+            padding: "5% 10%",
           }}
         >
-          <Box sx={{ ...style, width: "30%", borderRadius: "20px" , padding : "5% 10%"}}>
-            <Stack sx={{justifyContent :"center" }} gap={"20px"}>
-              <Typography variant="h2" fontWeight={700} color="secondary">
-                Confirm Appointment
+          <Stack sx={{ justifyContent: "center" }} gap={"20px"}>
+            <Typography variant="h2" fontWeight={700} color="secondary">
+              Confirm Appointment
+            </Typography>
+            <Space direction="v" value="10px" />
+            <Typography variant="h3" color="secondary" fontWeight={600}>
+              {doctor.name}
+            </Typography>
+            <Typography variant="h5" color="secondary" fontWeight={600}>
+              {doctor.specialization}
+            </Typography>
+            <BasicDateTimePicker value={dateTime} setValue={setDateTime} />
+            <TextField
+              id="patient-name"
+              label="Resipent Name"
+              value={patientName}
+              onChange={(event) => {
+                setPatientName(event.target.value);
+              }}
+            />
+            <TextField
+              id="Problem"
+              label="Patient Problem"
+              value={patientProblem}
+              onChange={(event) => {
+                setPatientProblem(event.target.value);
+              }}
+            />
+            <TextField
+              id="patient-history"
+              label="Patient History"
+              value={patientHistory}
+              onChange={(event) => {
+                setPatientHistory(event.target.value);
+              }}
+            />
+            <Typography variant="h6" color="red">
+              {feedback}
+            </Typography>
+            <Button
+              sx={{
+                display: "flex",
+                // padding: "2px 10px",
+                alignSelf: "center",
+                height: "60px",
+                width: "100%",
+                borderRadius: "10px",
+                border: "2px solid",
+              }}
+              // href={"/book-appointment"}
+              variant="outlined"
+              color="primary"
+              onClick={handleAppointmentBookNow}
+            >
+              <Typography variant="h5" fontWeight={600} color="primary">
+                Book Now
               </Typography>
-              <Space direction="v" value="10px" />
-              <Typography variant="h3" color="secondary" fontWeight={600}>
-               {doctor.name}
-              </Typography>
-              <Typography variant="h5" color="secondary" fontWeight={600}>
-               {doctor.specialization}
-              </Typography>
-              <BasicDateTimePicker value={dateTime} setValue={setDateTime} />
-              <TextField
-                id="patient-name"
-                label="Resipent Name"
-                value={patientName}
-                onChange={(event) => {
-                  setPatientName(event.target.value);
-                }}
-              />
-              <TextField
-                id="Problem"
-                label="Patient Problem"
-                value={patientProblem}
-                onChange={(event) => {
-                  setPatientProblem(event.target.value);
-                }}
-              />
-              <TextField
-                id="patient-history"
-                label="Patient History"
-                value={patientHistory}
-                onChange={(event) => {
-                  setPatientHistory(event.target.value);
-                }}
-              />
-              <Typography variant="h6" color="red">{feedback}</Typography>
-              <Button
-                sx={{
-                  display: "flex",
-                  // padding: "2px 10px",
-                  alignSelf: "center",
-                  height: "60px",
-                  width:"100%",
-                  borderRadius: "10px",
-                  border: "2px solid",
-                }}
-                // href={"/book-appointment"}
-                variant="outlined"
-                color="primary"
-                onClick={handleAppointmentBookNow}
-              >
-                <Typography variant="h5" fontWeight={600} color="primary">
-                  Book Now
-                </Typography>
-              </Button>
-            </Stack>
-          </Box>
-        </Modal>
+            </Button>
+          </Stack>
+        </Box>
+      </Modal>
     </Card>
   );
 };
