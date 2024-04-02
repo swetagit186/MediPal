@@ -9,8 +9,8 @@ import Space from './space';
 
 const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
 
-  console.log(user , isAuthed );
-  console.log("isAuthed " , isAuthed );
+  // console.log(user , isAuthed );
+  // console.log("isAuthed " , isAuthed );
   
 
     return (
@@ -82,7 +82,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             {/* <LoginLink postLoginRedirectURL="/dashboard">Sign in</LoginLink> */}
             <Space direction="h" value="10px" />
             {isAuthed === false ? (
-              <LoginLink postLoginRedirectURL="/signup">
+              <LoginLink postLoginRedirectURL="/dashboard">
                 <Button
                 color='success'
                   variant="contained"

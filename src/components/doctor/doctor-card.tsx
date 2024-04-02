@@ -6,12 +6,14 @@ import { Doctor } from '@/types/doctor';
 import Space from '../shared/space';
 import BasicDateTimePicker from '../shared/basic-date-time-picker';
 import dayjs, { Dayjs } from 'dayjs';
+import { UserDocument } from '@/models/User';
 
 interface DoctorCardProps {
   doctor: Doctor;
+  user : UserDocument
 }
 
-const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
+const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
   const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -34,21 +36,8 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
 
   const [feedback , setFeedback] = useState("");
 
-  const handleAppointmentBookNow = ()=>{
-    if(patientName === null || patientName.length === 0){
-      setFeedback("Please enter a patient name");
-      return;
-    }
-    if(patientProblem === null || patientProblem.length === 0){
-      setFeedback("Please enter a patient Problem");
-      return;
-    }
-    if(dateTime === null || dateTime.isBefore(dayjs()) || dateTime.isAfter(dayjs().add(7, 'day'))){
-      setFeedback("Please enter a Valid Date. Date must be between today and 7 days from now.");
-    }
 
-  }
-  const handleCreateAppointment = async () => {
+  const handleAppointmentBookNow = async () => {
     if(patientName === null || patientName.length === 0){
       setFeedback("Please enter a patient name");
       return;
@@ -69,20 +58,21 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
         },
         body: JSON.stringify({
           doctor_id: doctor.id ?? (Math.random()*1000).toString(),
-          user_id: 'userId',
+          user_id: user._id,
           patient_name: patientName,
           patient_problem: patientProblem,
           patient_history: patientHistory,
-          date: dateTime,
+          date: dateTime?.format(),
           doctor_name: doctor.name,
           doctor_specialization: doctor.specialization,
-          user_name: 'John Doe',
+          user_name: user.name,
         }),
       });
 
       const data = await response.json();
       console.log(data);
-
+      
+      setModalOpen(false);
       if (response.ok) {
         setFeedback('Appointment created successfully');
       } else {

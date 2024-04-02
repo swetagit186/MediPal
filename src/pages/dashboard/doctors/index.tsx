@@ -29,9 +29,41 @@ export async function getServerSideProps({
 
   const organization = await getOrganization();
   const permissions = await getPermissions();
-  const user = await getUser();
+  let user = await getUser();
   const isAuthed = await isAuthenticated();
 
+  if(isAuthed && user) {
+    const fullName = user?.given_name + " " + user?.family_name;
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email : user?.email || "",
+          phone_number: "",
+          gender: "",
+          _id: user.id,
+          user_type: "patient",
+          verified: false,
+          bio: "",
+          specialisation: null,
+        }),
+      }
+    );
+
+    // Handle success response if needed
+    const _data = await response.json();
+    console.log(_data);
+
+    if (!response.ok) {
+    }else{
+        user = _data.user;
+    }
+  }
   return {
     props: {
       user,
@@ -105,7 +137,7 @@ const Doctor = ({user , permission , orgainization, isAuthed}: any)=>{
         <Grid container spacing={2} padding={"3% 10%"}>
         {filteredDoctors.map((doctor) => (
           <Grid item key={doctor.id} xs={12} sm={6} md={4}>
-            <DoctorCard doctor={doctor} />
+            <DoctorCard doctor={doctor} user={user} />
           </Grid>
         ))}
       </Grid>

@@ -1,8 +1,6 @@
 // components/ServiceCard.tsx
 import React from 'react';
-import {Stack, IconButton,Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
-import { EmailOutlined, PhoneInTalk, PhonelinkLockOutlined } from '@mui/icons-material';
-import { Doctor } from '@/types/doctor';
+import { Typography, Button } from '@mui/material';
 import styles from "@/styles/service-card.module.scss";
 import { url } from 'inspector';
 import Image from 'next/image';

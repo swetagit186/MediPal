@@ -2,6 +2,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '@/lib/dbConnect';
 import Appointment from '@/models/Appointment';
+import User from '@/models/User';
 
 
 const appointmentsHandlerById = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -10,9 +11,7 @@ const appointmentsHandlerById = async (req: NextApiRequest, res: NextApiResponse
 await dbConnect();
 if (req.method === 'GET') {
     try {
-      // const appointment = await Appointment.findById(id);
-      const appointment = await Appointment.find({ user_id: id });
-
+      const appointment = await Appointment.findById(id);
       if (!appointment) {
         return res.status(404).json({ success: false, error: 'Appointment not found' });
       }
@@ -32,20 +31,22 @@ if (req.method === 'GET') {
     } catch (error) {
       res.status(500).json({ success: false, error: `Something went wrong ${error}` });
     }
-  }else  if (req.method === 'PUT') {
+  }else if (req.method === "PUT") {
+    const { id } = req.query;
     try {
-      const updatedAppointment = await Appointment.findByIdAndUpdate(id, req.body, {
-        new: true,
+      console.log(id);
+      const updatedUser = await User.findOneAndUpdate({_id : id}, req.body, {
+        // new: true,
         runValidators: true,
       });
-      if (!updatedAppointment) {
-        return res.status(404).json({ success: false, error: 'Appointment not found' });
+      if (!updatedUser) {
+        return res.status(404).json({ success: false, error: `Failed to update ${updatedUser}` });
       }
-      res.status(200).json({ success: true, data: updatedAppointment });
+      res.status(200).json({ success: true, data: updatedUser });
     } catch (error) {
       res.status(500).json({ success: false, error: `Something went wrong ${error}` });
     }
-}else {
+  } else {
     res.status(405).json({ success: false, message: 'Method Not Allowed' });
   }
 };
