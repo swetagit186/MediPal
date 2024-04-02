@@ -66,7 +66,7 @@ const Profile = ({user , isAuthed} : {user : UserDocument , isAuthed : boolean})
 
     const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL +
-          `/api/user/${user._id}`,
+          `/api/user/${user._id ?? user.id}`,
         {
           method: "PUT",
           headers: {

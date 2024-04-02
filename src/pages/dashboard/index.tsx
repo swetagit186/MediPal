@@ -28,7 +28,7 @@ export async function getServerSideProps({
   let user = await getUser();
   const isAuthed = await isAuthenticated();
 
-  // let appointments : = [] ;
+  let appointments = [] ;
 
   if(isAuthed && user) {
     const fullName = user?.given_name + " " + user?.family_name;
@@ -65,25 +65,24 @@ export async function getServerSideProps({
     //   } else {
     //     user = _data.user;
     //   }
-    //   const responseAppointment = await fetch(
-    //     process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${id}`,
-    //     {
-    //       method: "GET",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   );
+      const responseAppointment = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    //   // Handle success response if needed
-    //   const dataApp = await responseAppointment.json();
-    //   console.log(dataApp);
+      // Handle success response if needed
+      const dataApp = await responseAppointment.json();
+      console.log(dataApp);
 
-    //   if (!response.ok) {
-    //   } else {
-    //     appointments = dataApp.data;
-    //   }
-    //   console.log(appointments);
+      if (responseAppointment.ok) {
+        appointments = dataApp.data;
+      }
+      console.log(appointments);
     }
 
   }
@@ -94,27 +93,27 @@ export async function getServerSideProps({
       permissions,
       organization,
       isAuthed,
-      // appointments,
+      appointments,
     },
   };
 }
 
 
-const Dashboard = ({user , permission , orgainization, isAuthed }: any)=>{
+const Dashboard = ({user , permission , orgainization, isAuthed, appointments }: any)=>{
 
-  console.log(user , permission , orgainization, isAuthed );
-    // const userAppointment : [Appointment] = appointments
+  console.log(user , permission , orgainization, isAuthed , appointments );
+    const userAppointment : [Appointment] = appointments
     return (
       <div className={styles.body}>
         {/* <NavBar user={user} isAuthed={isAuthed} /> */}
 
         <Profile user={user} isAuthed={isAuthed} />
-        <div>Deployment check</div>
-        {/* {userAppointment.map((appointment) => (
+        <div>Deployment check 2</div>
+        {userAppointment.map((appointment) => (
           <div key={appointment._id} >
             <AppointmentCard appointment={appointment}/>
           </div>
-        ))} */}
+        ))}
         <Footer />
       </div>
     );
