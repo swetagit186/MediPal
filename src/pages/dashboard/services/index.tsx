@@ -1,7 +1,7 @@
 import Footer from "@/components/shared/footer";
 import NavBar from "@/components/shared/nav-bar";
 import {Grid,Stack,Box, Typography, FormControl, Select, InputLabel,SelectChangeEvent , MenuItem} from "@mui/material"
-import styles from "@/styles/dashboard.module.scss"
+import styles from "@/styles/services.module.scss"
 import Image from "next/image";
 import Space from "@/components/shared/space";
 import ServiceCard from "@/components/service-card";
@@ -41,7 +41,7 @@ export async function getServerSideProps({
 }
 
 
-const Dashboard = ({user , permission , orgainization, isAuthed}: any)=>{
+const Services = ({user , permission , orgainization, isAuthed}: any)=>{
 
   console.log(user , permission , orgainization, isAuthed);
 
@@ -88,4 +88,4 @@ const Dashboard = ({user , permission , orgainization, isAuthed}: any)=>{
     );
 }
 
-export default Dashboard;
+export default Services;
