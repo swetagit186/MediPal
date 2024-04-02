@@ -7,13 +7,17 @@ import Space from "./space";
 import ContactUs from "./contactUs";
 import Footer from "./footer";
 
+
+
 const LandingPage = ({user , isAuthed} :  {user : any , isAuthed : boolean}) => {
     return (
       <div>
         <NavBar user={user} isAuthed={isAuthed} />
         <HeroPage />
-        {/* <BookAppointment/> */}
+        <About/>
+        <ContactUs/>
         <Testimonials />
+        <Footer/>
       </div>
     );
 }
