@@ -32,7 +32,7 @@ export async function getServerSideProps({
 
   if(isAuthed && user) {
     const fullName = user?.given_name + " " + user?.family_name;
-    const user_id = user?.id;
+    const id = user?.id;
 
     if(process.env.NEXT_PUBLIC_BASE_URL) {
       const response = await fetch(
@@ -65,7 +65,7 @@ export async function getServerSideProps({
         user = _data.user;
       }
       const responseAppointment = await fetch(
-        process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${user_id}`,
+        process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${id}`,
         {
           method: "GET",
           headers: {
@@ -102,17 +102,18 @@ export async function getServerSideProps({
 const Dashboard = ({user , permission , orgainization, isAuthed , appointments}: any)=>{
 
   console.log(user , permission , orgainization, isAuthed , appointments);
-    const userAppointment : [Appointment] = appointments
+    // const userAppointment : [Appointment] = appointments
     return (
       <div className={styles.body}>
         <NavBar user={user} isAuthed={isAuthed} />
 
         <Profile user={user} isAuthed={isAuthed} />
-        {userAppointment.map((appointment) => (
+        <div>Deployment check</div>
+        {/* {userAppointment.map((appointment) => (
           <div key={appointment._id} >
             <AppointmentCard appointment={appointment}/>
           </div>
-        ))}
+        ))} */}
         <Footer />
       </div>
     );
