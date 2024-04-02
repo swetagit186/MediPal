@@ -1,4 +1,6 @@
 import {Stack, Typography, Button, IconButton , Divider} from '@mui/material';
+import React, { useState } from 'react';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 
 import styles from "@/styles/shared/nav-bar.module.scss"
@@ -11,17 +13,22 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
 
   console.log(user , isAuthed );
   console.log("isAuthed " , isAuthed );
-  
+
+  const [clickedButton, setClickedButton] = useState<number | null>(null);
+
+  const handleClick = (buttonId: number) => { // Specify the type as number
+    setClickedButton(buttonId);
+  };
 
     return (
       <div className={styles.mainContainer}>
         <Stack
           direction="row"
           gap={"10px"}
-          justifyContent="space-between"
+          justifyContent="space-around"
           margin={"0px 10%"}
         >
-          <Stack direction={"row"} alignItems={"center"}>
+          <Stack direction={"row"} alignItems={"center"} justifyContent={'space-between'}>
             <PhoneOutlined color="primary" />
             <Button variant="text">
               <Typography variant="h5" fontWeight={600}>
@@ -31,16 +38,16 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
           </Stack>
 
           <Stack direction={"row"} gap={"10px"}>
-            <IconButton aria-label="facebook" onClick={() => {}}>
+            <IconButton aria-label="facebook"  sx={{'&:hover': {color: '#1976d2', },}}  onClick={() => {}}>
               <Twitter />
             </IconButton>
-            <IconButton aria-label="facebook" onClick={() => {}}>
+            <IconButton aria-label="facebook"  sx={{'&:hover': {color: '#1976d2', },}}  onClick={() => {}}>
               <LinkedIn />
             </IconButton>
-            <IconButton aria-label="facebook" onClick={() => {}}>
+            <IconButton aria-label="facebook"  sx={{'&:hover': {color: '#1976d2', },}}  onClick={() => {}}>
               <Instagram />
             </IconButton>
-            <IconButton aria-label="facebook" onClick={() => {}}>
+            <IconButton aria-label="facebook"  sx={{'&:hover': {color: '#1976d2', },}}  onClick={() => {}}>
               <FacebookOutlined />
             </IconButton>
           </Stack>
@@ -58,25 +65,25 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             width={250}
           />
           <Stack direction={"row"} sx={{ alignItems:"center"}}>
-            <Button variant="text" href="/dashboard" color="inherit">
+            <Button variant="text" href="/dashboard" color={clickedButton === 1 ? 'primary' : 'inherit'}  onClick={() => handleClick(1)} sx={{'&:hover': {color: '#1976d2', },}}  >
               <Typography variant="h5" fontWeight={500}>
                 Dashboard
               </Typography>
             </Button>
 
-            <Button variant="text" href="/dashboard/services" color="inherit">
+            <Button variant="text" href="/dashboard/services" color={clickedButton === 2 ? 'primary' : 'inherit'} onClick={() => handleClick(2)} sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
                 Services
               </Typography>
             </Button>
-            <Button variant="text" href="/dashboard/doctors" color="inherit">
+            <Button variant="text" href="/dashboard/doctors" color={clickedButton === 3 ? 'primary' : 'inherit'} onClick={() => handleClick(3)} sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
                 Doctors
               </Typography>
             </Button>
-            <Button variant="text" href="/contact-us" color="inherit">
+            <Button variant="text" href="/dashboard/contactUs" color={clickedButton === 4 ? 'primary' : 'inherit'} onClick={() => handleClick(4)} sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
-                Contact
+                ContactUs
               </Typography>
             </Button>
             {/* <LoginLink postLoginRedirectURL="/dashboard">Sign in</LoginLink> */}

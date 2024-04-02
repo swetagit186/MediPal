@@ -86,7 +86,7 @@ const Testimonials = () => {
       <Stack direction="row" align-items="center" justifyContent="items-start" spacing={0.5}>
           <Image src="/assets/heartline.svg" alt="bubble" height={40} width={40}></Image>
           <Typography variant="h6" fontWeight="bold" color="primary">
-            ABOUT US
+            TESTIMONIALS
         </Typography>
         </Stack>
         <ThemeProvider theme={theme} >

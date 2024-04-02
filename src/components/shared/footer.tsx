@@ -35,9 +35,10 @@ const Footer: React.FC = () => {
             <IconButton
               className={styles.iconButton}
               style={{
-                borderWidth: "2px",
+                borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <FacebookIcon />
@@ -45,9 +46,10 @@ const Footer: React.FC = () => {
             <IconButton
               className={styles.iconButton}
               style={{
-                borderWidth: "2px",
+                borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <TwitterIcon />
@@ -58,6 +60,7 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <LinkedInIcon/>
@@ -68,6 +71,7 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
+                color:'white'
               }}
             >
               <InstagramIcon />
