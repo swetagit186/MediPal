@@ -94,7 +94,7 @@ const About=()=>{
               </Stack>
 
               <Typography variant="h3" fontWeight="bold">
-                Welcome To Doctorate Central Hospital
+                Welcome To MediPal Central Hospital
               </Typography>
               <Typography variant="h6">
                 Our team of highly trained professionals uses the latest healing
