@@ -52,7 +52,7 @@ interface TestimonialProps {
 const testimonialsData: Testimonial[] = [
   { id: 1, name: 'John Doe',domain:'Cancer Patient',rating:4, text: '“I want to express my appreciation for a very finely run and professional facility. Doctors always encouraged to ask questions.”' },
   { id: 2, name: 'Jane Smith',domain:'Customer Service',rating:4.5, text: '“I wish the world could know the wonderful things that are happening on the Doctorate hospital, who have had an injury that cured soon. "' },
-  { id: 3, name: 'Alice Johnson',domain:'Leukemia Patient',rating:5, text: '“All the doctors, nurses, aides, food service employees, security and maintenance workers deserve such praise for their attention & care.”' },
+  { id: 3, name: 'Alice Johnson',domain:'Leukemia Patient',rating:5, text: '“All the doctors,nurses,aides,food service,employees,security and maintenance workers deserve such praise for their attention & care.”' },
   { id: 4, name: 'Bob Brown',domain:'Orthopedics Patient',rating:4.5, text: '"I had been struggling with chronic knee pain for years until I met an orthopedic surgeon. Their expertise transformed my life. I cannot thank them enough. "'},
   { id: 5, name: 'Emma Davis',domain:'Cardiology Patient',rating:5, text: '“Expert care resolved chest pains, guiding successful treatment, significantly improving health. Highly recommend their services for cardiac concerns."' }
 ];
