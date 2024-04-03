@@ -1,14 +1,14 @@
 import Container from '@mui/material/Container'
 import Card from '@mui/material/Card';
 import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';import { use, useState } from 'react';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { useState } from 'react';
 
 import styles from '@/styles/profile.module.scss';
 
 import { Medication, Person, Verified } from '@mui/icons-material';
 import { TextField, Button, Typography ,FormControl ,SelectChangeEvent, InputLabel , Select , MenuItem} from '@mui/material'
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserDocument } from '@/models/User';
 
@@ -105,6 +105,7 @@ const Profile = ({user , isAuthed} : {user : UserDocument , isAuthed : boolean})
       <div className={styles.leftContainer}>
         <Image
           src="/images/doc_pic1.png"
+          priority ={true}
           alt="doctor image"
           width={"500"}
           height={500}
