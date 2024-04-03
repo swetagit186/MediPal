@@ -4,12 +4,19 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import Image from 'next/image';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import styles from '@/styles/testimonials.module.scss'
+import DoctorRating from './ratings';
 
 interface Testimonial {
   id: number;
   name: string;
   text: string;
-  domain:string
+  domain:string;
+  rating: number;
+}
+
+interface DoctorRatingProps {
+  
+  initialValue?: number; // Optional initial value
 }
 
 interface TestimonialProps {
@@ -43,11 +50,11 @@ interface TestimonialProps {
   });
 
 const testimonialsData: Testimonial[] = [
-  { id: 1, name: 'John Doe',domain:'Cancer Patient', text: '“I want to express my appreciation for a very finely run and professional facility. Doctors always encouraged to ask questions.”' },
-  { id: 2, name: 'Jane Smith',domain:'Customer Service', text: '“I wish the world could know the wonderful things that are happening on the Doctorate hospital, who have had an injury that cured soon. "' },
-  { id: 3, name: 'Alice Johnson',domain:'Leukemia Patient', text: '“All the doctors, nurses, aides, food service employees, security and maintenance workers deserve such praise for their attention & care.”' },
-  { id: 4, name: 'Bob Brown',domain:'Cardiac Patient', text: '"I wish the world could know the wonderful things that are happening on the Doctorate hospital, who have had an injury that cured soon. "' },
-  { id: 5, name: 'Emma Davis',domain:'Cervical Cancer Patient', text: '“I want to express my appreciation for a very finely run and professional facility. Doctors always encouraged to ask questions.”' }
+  { id: 1, name: 'John Doe',domain:'Cancer Patient',rating:4, text: '“I want to express my appreciation for a very finely run and professional facility. Doctors always encouraged to ask questions.”' },
+  { id: 2, name: 'Jane Smith',domain:'Customer Service',rating:4.5, text: '“I wish the world could know the wonderful things that are happening on the Doctorate hospital, who have had an injury that cured soon. "' },
+  { id: 3, name: 'Alice Johnson',domain:'Leukemia Patient',rating:5, text: '“All the doctors, nurses, aides, food service employees, security and maintenance workers deserve such praise for their attention & care.”' },
+  { id: 4, name: 'Bob Brown',domain:'Orthopedics Patient',rating:4.5, text: '"I had been struggling with chronic knee pain for years until I met an orthopedic surgeon. Their expertise transformed my life. I cannot thank them enough. "'},
+  { id: 5, name: 'Emma Davis',domain:'Cardiology Patient',rating:5, text: '“Expert care resolved chest pains, guiding successful treatment, significantly improving health. Highly recommend their services for cardiac concerns."' }
 ];
 
 const Testimonials = () => {
@@ -105,6 +112,7 @@ const Testimonials = () => {
             <Stack spacing={2} key={testimonial.id} className={styles.testimonial} sx={{backgroundColor:'white'}}>
             <Image src="/assets/comma.svg" alt='comma' width={40} height={40}></Image>
               <Typography variant="h5" className={styles.testimonialtext}>{testimonial.text}</Typography>
+              <DoctorRating  initialValue={testimonial.rating} />
               <Typography variant="h5" fontWeight="bold" className={styles.testimonialname}>- {testimonial.name}</Typography>
               <Typography variant="h5" className={styles.testimonialname}>({testimonial.domain})</Typography>
             </Stack>
