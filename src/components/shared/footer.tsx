@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                 borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
-                color:'white'
+                color: "white",
               }}
             >
               <FacebookIcon />
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                 borderWidth: "1px",
                 borderStyle: "solid",
                 padding: "12px",
-                color:'white'
+                color: "white",
               }}
             >
               <TwitterIcon />
@@ -60,10 +60,10 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
-                color:'white'
+                color: "white",
               }}
             >
-              <LinkedInIcon/>
+              <LinkedInIcon />
             </IconButton>
             <IconButton
               className={styles.iconButton}
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 borderWidth: "2px",
                 borderStyle: "solid",
                 padding: "12px",
-                color:'white'
+                color: "white",
               }}
             >
               <InstagramIcon />
@@ -131,10 +131,10 @@ const Footer: React.FC = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xs={12} sm={7} md={3} >
-        <Stack direction={"row"} justifyContent={"left"} marginTop={"20px"}>
+        <Grid item xs={12} sm={7} md={3}>
+          <Stack direction={"row"} justifyContent={"left"} marginTop={"20px"}>
             <Typography variant="h4" fontWeight={600}>
-            Book Appointment
+              Book Appointment
             </Typography>
             <Image src="/assets/wave.svg" alt="Wave" height={20} width={80} />
           </Stack>
@@ -147,13 +147,12 @@ const Footer: React.FC = () => {
               color="primary"
               onClick={handleCallButtonClick}
               sx={{
-                borderRadius:"20px",
-                height:"50px"
-
+                borderRadius: "20px",
+                height: "50px",
               }}
-              startIcon= {<PhoneInTalk />}
+              startIcon={<PhoneInTalk />}
             >
-                CALL +91 8877665544
+              CALL +91 8877665544
             </Button>
           </div>
         </Grid>

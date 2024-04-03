@@ -105,7 +105,7 @@ export async function getServerSideProps({
 const Dashboard = ({user , permission , orgainization, isAuthed, appointments  }: any)=>{
 
   const [loginUser , setLoginUserData] = useState<UserDocument| null>(null);
-  console.log('loginUser', loginUser);
+  // console.log('loginUser', loginUser);
 
   useEffect(()=>{
       // console.log('user' , user);
@@ -163,7 +163,6 @@ const Dashboard = ({user , permission , orgainization, isAuthed, appointments  }
         <NavBar user={user} isAuthed={isAuthed} />
 
         <Profile user={loginUser} isAuthed={isAuthed} />
-        <div>Deployment check 2</div>
         {userAppointment.length > 0 && userAppointment.map((appointment) => (
           <div key={appointment._id} >
             <AppointmentCard appointment={appointment}/>

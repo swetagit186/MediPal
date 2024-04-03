@@ -3,7 +3,7 @@ import NavBar from "@/components/shared/nav-bar";
 import {Grid,Stack,Box, Typography, FormControl, Select, InputLabel,SelectChangeEvent , MenuItem} from "@mui/material"
 import styles from "@/styles/doctor.module.scss"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DoctorCard from "@/components/doctor/doctor-card";
 import { doctors } from "@/data/doctors";
 import Space from "@/components/shared/space";
@@ -12,6 +12,7 @@ import Space from "@/components/shared/space";
 import {
   getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { UserDocument } from "@/models/User";
 
 export async function getServerSideProps({
   req,
@@ -80,7 +81,55 @@ export async function getServerSideProps({
 const Doctor = ({user , permission , orgainization, isAuthed}: any)=>{
 
     const [selectedSpecialization, setSelectedSpecialization] = useState("All");
+    const [loginUser , setLoginUserData] = useState<UserDocument| null>(null);
+    // console.log('loginUser', loginUser);
+    useEffect(() => {
+      // console.log('user' , user);
+      const fetchUserData = async () => {
+        const fullName = user?.given_name + " " + user?.family_name ?? "";
+        const id = user?.id;
+        console.log(fullName, id);
 
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: fullName,
+              email: user?.email || "",
+              phone_number: "",
+              gender: "",
+              _id: user.id,
+              user_type: "patient",
+              verified: false,
+              bio: "",
+              specialisation: null,
+            }),
+          }
+        );
+
+        // Handle success response if needed
+        const _data = await response.json();
+        console.log("_data", _data);
+
+        if (response.ok) {
+          // user = _data.user;
+          setLoginUserData(_data.user);
+        }
+      };
+      fetchUserData();
+    }, [user]);
+
+    if(!loginUser){
+      return (
+        <div style={{width:"100%" , alignContent:"center" , alignItems:"center"}}>
+          Loding...
+        </div>
+      )
+    }
     const filteredDoctors = selectedSpecialization
         ? selectedSpecialization === "All" ? doctors : doctors.filter(
             (doctor) => doctor.specialization === selectedSpecialization
@@ -139,7 +188,7 @@ const Doctor = ({user , permission , orgainization, isAuthed}: any)=>{
         <Grid container spacing={2} padding={"3% 10%"}>
         {filteredDoctors.map((doctor) => (
           <Grid item key={doctor.id} xs={12} sm={6} md={4}>
-            <DoctorCard doctor={doctor} user={user} />
+            <DoctorCard doctor={doctor} user={loginUser} />
           </Grid>
         ))}
       </Grid>
