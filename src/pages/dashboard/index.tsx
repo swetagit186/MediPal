@@ -29,42 +29,44 @@ export async function getServerSideProps({
   const isAuthed = await isAuthenticated();
 
   let appointments = [] ;
-
+  let loginUserData ;
   if(isAuthed && user) {
     const fullName = user?.given_name + " " + user?.family_name;
     const id = user?.id;
     console.log(fullName, id);
 
     if(process.env.NEXT_PUBLIC_BASE_URL !== null || process.env.NEXT_PUBLIC_BASE_URL !== undefined ) {
-      // const response = await fetch(
-      //   process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       name: fullName,
-      //       email: user?.email || "",
-      //       phone_number: "",
-      //       gender: "",
-      //       _id: user.id,
-      //       user_type: "patient",
-      //       verified: false,
-      //       bio: "",
-      //       specialisation: null,
-      //     }),
-      //   }
-      // );
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL + `/api/user/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: fullName,
+            email: user?.email || "",
+            phone_number: "",
+            gender: "",
+            _id: user.id,
+            user_type: "patient",
+            verified: false,
+            bio: "",
+            specialisation: null,
+          }),
+        }
+      );
 
-      // // Handle success response if needed
-      // const _data = await response.json();
-      // console.log(_data);
+      // Handle success response if needed
+      const _data = await response.json();
+      console.log('_data' , _data);
 
-      // if (!response.ok) {
-      // } else {
-      //   user = _data.user;
-      // }
+      if (response.ok) {
+        // user = _data.user;
+        loginUserData = _data.user;
+      }else{
+        loginUserData = _data.error;
+      }
       const responseAppointment = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL + `/api/appointments/${id}`,
         {
@@ -94,15 +96,16 @@ export async function getServerSideProps({
       organization,
       isAuthed,
       appointments,
+      loginUserData,
     },
   };
 }
 
 
-const Dashboard = ({user , permission , orgainization, isAuthed, appointments }: any)=>{
+const Dashboard = ({user , permission , orgainization, isAuthed, appointments , loginUserData }: any)=>{
 
-  console.log(user , permission , orgainization, isAuthed , appointments );
-    const userAppointment : [Appointment] = appointments
+  console.log(user , permission , orgainization, isAuthed , appointments , loginUserData );
+    const userAppointment : [Appointment] = appointments ?? [];
     return (
       <div className={styles.body}>
         <NavBar user={user} isAuthed={isAuthed} />
