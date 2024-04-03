@@ -112,7 +112,7 @@ const Doctor = ({user , permission , orgainization, isAuthed}: any)=>{
             fontWeight={800}
             color="white"
           >
-            The Doctorate Crew
+            The MediPal Crew
           </Typography>
           </Box>
         </Stack>
