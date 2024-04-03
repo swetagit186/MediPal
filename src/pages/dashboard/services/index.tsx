@@ -51,7 +51,7 @@ const Services = ({user , permission , orgainization, isAuthed}: any)=>{
     };
     return (
       <div className={styles.body}>
-        <NavBar user={user} isAuthed={isAuthed} />
+        <NavBar currentButton={2} isAuthed={isAuthed} />
         
        
         <Stack className={styles.medicalTeam}>

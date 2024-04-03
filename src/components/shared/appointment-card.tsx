@@ -7,8 +7,11 @@ import { useEffect, useState } from "react";
 
 const AppointmentCard = ({appointment} : {appointment : Appointment} )=>{
     const appointmentDate = new Date(appointment.date).toLocaleString();
-    const gender  = Math.ceil(Math.random() * 2) % 2  === 0 ? "Male" : "Female";
+    // const isButtonActive = appointment.date.be
+    const gender  = parseInt(appointment.doctor_id)%2  === 0 ? "Male" : "Female";
     // const gender = "Male";
+    // const doctor_rating = parseInt(appointment.doctor_id);
+    // console.log(doctor_rating);
     const [hydrated, setHydrated] = useState(false);
         useEffect(() => {
         setHydrated(true);
@@ -57,7 +60,7 @@ const AppointmentCard = ({appointment} : {appointment : Appointment} )=>{
 
               <Rating
                 name="simple-controlled"
-                value={Math.ceil(Math.random() * 5)}
+                value={parseInt(appointment.doctor_id)%5}
                 readOnly
                 // disabled={true}
               />

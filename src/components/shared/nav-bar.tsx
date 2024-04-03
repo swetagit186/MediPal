@@ -10,16 +10,16 @@ import Image from 'next/image';
 import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs';
 import Space from './space';
 
-const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
+const NavBar = ({currentButton, isAuthed} : {currentButton:number , isAuthed : boolean})=>{
 
-  console.log(user , isAuthed );
+  console.log( isAuthed );
   console.log("isAuthed " , isAuthed );
 
-  const [clickedButton, setClickedButton] = useState<number | null>(null);
+  // const [currentButton, setcurrentButton] = useState<number | null>(currentButton);
 
-  const handleClick = (buttonId: number) => { // Specify the type as number
-    setClickedButton(buttonId);
-  };
+  // const handleClick = (buttonId: number) => { // Specify the type as number
+  //   setcurrentButton(buttonId);
+  // };
 
     return (
       <div className={styles.mainContainer}>
@@ -69,23 +69,23 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
           </Link>
           
           <Stack direction={"row"} sx={{ alignItems:"center"}}>
-            <Button variant="text" href="/dashboard" color={clickedButton === 1 ? 'primary' : 'inherit'}  onClick={() => handleClick(1)} sx={{'&:hover': {color: '#1976d2', },}}  >
+            <Button variant="text" href="/dashboard" color={currentButton === 1 ? 'primary' : 'inherit'} sx={{'&:hover': {color: '#1976d2', },}}  >
               <Typography variant="h5" fontWeight={500}>
                 Dashboard
               </Typography>
             </Button>
 
-            <Button variant="text" href="/dashboard/services" color={clickedButton === 2 ? 'primary' : 'inherit'} onClick={() => handleClick(2)} sx={{'&:hover': {color: '#1976d2', },}}>
+            <Button variant="text" href="/dashboard/services" color={currentButton === 2 ? 'primary' : 'inherit'}  sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
                 Services
               </Typography>
             </Button>
-            <Button variant="text" href="/dashboard/doctors" color={clickedButton === 3 ? 'primary' : 'inherit'} onClick={() => handleClick(3)} sx={{'&:hover': {color: '#1976d2', },}}>
+            <Button variant="text" href="/dashboard/doctors" color={currentButton === 3 ? 'primary' : 'inherit'}  sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
                 Doctors
               </Typography>
             </Button>
-            <Button variant="text" href="/dashboard/contactUs" color={clickedButton === 4 ? 'primary' : 'inherit'} onClick={() => handleClick(4)} sx={{'&:hover': {color: '#1976d2', },}}>
+            <Button variant="text" href="/dashboard/contactUs" color={currentButton === 4 ? 'primary' : 'inherit'} sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
                 Contact
               </Typography>
@@ -134,7 +134,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             ) : null}
             <Button
               variant="contained"
-              href="/contact-us"
+              href="/dashboard/contactUs"
               startIcon={<CalendarTodayOutlined />}
               style={{
                 borderRadius: "30px",
