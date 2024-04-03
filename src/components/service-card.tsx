@@ -41,8 +41,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         right : "25%",
         // width: "150px",
         borderBottom : "3px solid"
-      }} href={service.href} variant="text" color="primary">
-        <Typography variant="h6" fontWeight={600} color="primary">+ Read More</Typography>
+      }} href={"/dashboard/doctors"} variant="text" color="primary">
+        <Typography variant="h6" fontWeight={600} color="primary">+ View Doctor</Typography>
       </Button>
     </div>
   );

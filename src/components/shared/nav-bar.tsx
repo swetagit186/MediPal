@@ -87,7 +87,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             </Button>
             <Button variant="text" href="/dashboard/contactUs" color={clickedButton === 4 ? 'primary' : 'inherit'} onClick={() => handleClick(4)} sx={{'&:hover': {color: '#1976d2', },}}>
               <Typography variant="h5" fontWeight={500}>
-                ContactUs
+                Contact
               </Typography>
             </Button>
             {/* <LoginLink postLoginRedirectURL="/dashboard">Sign in</LoginLink> */}
