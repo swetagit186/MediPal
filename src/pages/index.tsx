@@ -1,5 +1,4 @@
 
-import { GetServerSideProps } from 'next';
 import LandingPage from '@/components/shared/landingPage';
 
 

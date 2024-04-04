@@ -1,6 +1,7 @@
 import Footer from "@/components/shared/footer";
 import NavBar from "@/components/shared/nav-bar";
 import styles from "@/styles/dashboard.module.scss"
+import {Grid,Stack,Box, Typography, FormControl, Select, InputLabel,SelectChangeEvent , MenuItem} from "@mui/material"
 
 import {
   getKindeServerSession,
@@ -10,6 +11,8 @@ import { Appointment } from "@/models/Appointment";
 import AppointmentCard from "@/components/shared/appointment-card";
 import { useEffect, useState } from "react";
 import { UserDocument } from "@/models/User";
+import Image from "next/image";
+import Space from "@/components/shared/space";
 
 export async function getServerSideProps({
   req,
@@ -150,8 +153,8 @@ const Dashboard = ({user , permission , orgainization, isAuthed, appointments  }
 
   if(!loginUser){
     return (
-      <div style={{width:"100%" , alignContent:"center" , alignItems:"center"}}>
-        Loding...
+      <div style={{width:"100%", height:"100vh" , display:"flex", justifyContent:"center" , alignItems:"center"}}>
+        <Typography variant="h4" color="initial" fontWeight={800}>Loading...</Typography>
       </div>
     )
   }
@@ -160,9 +163,46 @@ const Dashboard = ({user , permission , orgainization, isAuthed, appointments  }
     const userAppointment : [Appointment] = appointments ?? [];
     return (
       <div className={styles.body}>
-        <NavBar user={user} isAuthed={isAuthed} />
+        <NavBar currentButton={1} isAuthed={isAuthed} />
 
         <Profile user={loginUser} isAuthed={isAuthed} />
+
+        <Stack className={styles.medicalTeam}>
+          <Box
+            sx={{
+              backgroundImage:
+                "linear-gradient(rgba(0, 21, 52, .9), rgba(0, 21, 52, .9))",
+              padding: "7% 10%",
+            }}
+          >
+            <Stack direction={"row"} justifyContent={"center"}>
+              <Image
+                src="/assets/wave.svg"
+                alt="Wave"
+                height={20}
+                width={100}
+              />
+              <Typography align="center" variant="h5" color="white">
+               BOOKING
+              </Typography>
+              <Image
+                src="/assets/wave.svg"
+                alt="Wave"
+                height={20}
+                width={100}
+              />
+            </Stack>
+            <Space direction="v" value="20px" />
+            <Typography
+              textAlign={"center"}
+              variant="h2"
+              fontWeight={800}
+              color="white"
+            >
+              Upcomming Appointments
+            </Typography>
+          </Box>
+        </Stack>
         {userAppointment.length > 0 && userAppointment.map((appointment) => (
           <div key={appointment._id} >
             <AppointmentCard appointment={appointment}/>

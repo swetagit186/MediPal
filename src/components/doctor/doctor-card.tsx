@@ -48,6 +48,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
     }
     if(dateTime === null || dateTime.isBefore(dayjs()) || dateTime.isAfter(dayjs().add(7, 'day'))){
       setFeedback("Please enter a Valid Date. Date must be between today and 7 days from now.");
+      return;
     }
 
     try {
@@ -72,12 +73,13 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor , user}) => {
       const data = await response.json();
       console.log(data);
       
-      setModalOpen(false);
+      
       if (response.ok) {
         setFeedback('Appointment created successfully');
       } else {
         setFeedback(data.error || 'Failed to create appointment');
       }
+      setModalOpen(false);
     } catch (error) {
       setFeedback('An error occurred. Please try again.');
     }

@@ -17,7 +17,7 @@ const LandingPage = ({user , isAuthed} :  {user : any , isAuthed : boolean}) => 
     const hoverColor="white";
     return (
       <div>
-        <NavBar user={user} isAuthed={isAuthed} />
+        <NavBar currentButton={0} isAuthed={isAuthed} />
         <HeroPage />
         <About/>
         <ContactUs textColor={textColor} backgroundColor={backgroundColor}  text={text} hoverColor={hoverColor}/>
