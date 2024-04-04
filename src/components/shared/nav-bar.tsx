@@ -1,7 +1,8 @@
-import {Stack, Typography, Button, IconButton , Divider} from '@mui/material';
+import {Stack, Typography, Button, IconButton , Divider ,Hidden} from '@mui/material';
 import React, { useState } from 'react';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { Link } from '@mui/material';
+import Hamburger from './hamburgerMenu';
 
 
 import styles from "@/styles/shared/nav-bar.module.scss"
@@ -24,12 +25,12 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
     return (
       <div className={styles.mainContainer}>
         <Stack
-          direction="row"
+          direction={{ xs: 'column', md: 'row' }}
           gap={"10px"}
           justifyContent="space-between"
           margin={"0px 10%"}
         >
-          <Stack direction={"row"} alignItems={"center"} justifyContent={'space-between'}>
+          <Stack direction={"row"} alignItems={"center"} justifyContent={{xs:'center',md:''}}>
             <PhoneOutlined color="primary" />
             <Button variant="text"> 
               <Typography variant="h5" fontWeight={500} color="black">
@@ -38,7 +39,7 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             </Button>
           </Stack>
 
-          <Stack direction={"row"} gap={"10px"}>
+          <Stack direction={"row"} gap={"10px"} justifyContent={{xs:'center',md:''}}>
             <IconButton aria-label="facebook"  sx={{'&:hover': {color: '#1976d2', },}}  onClick={() => {}}>
               <Twitter />
             </IconButton>
@@ -67,8 +68,12 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
             width={190}
           />
           </Link>
-          
-          <Stack direction={"row"} sx={{ alignItems:"center"}}>
+          <Hidden lgUp>
+                <Hamburger  user={user} isAuthed={isAuthed} />
+            </Hidden>
+
+            <Hidden lgDown xlUp>
+            <Stack direction={"row"} sx={{ alignItems:"center"}}>
             <Button variant="text" href="/dashboard" color={clickedButton === 1 ? 'primary' : 'inherit'}  onClick={() => handleClick(1)} sx={{'&:hover': {color: '#1976d2', },}}  >
               <Typography variant="h5" fontWeight={500}>
                 Dashboard
@@ -147,6 +152,8 @@ const NavBar = ({user , isAuthed} : {user : any , isAuthed : boolean})=>{
               </Typography>
             </Button>
           </Stack>
+            </Hidden>
+          
         </Stack>
       </div>
     );
