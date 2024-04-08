@@ -6,7 +6,7 @@ import { AppRegistrationRounded, CalendarTodayOutlined, FacebookOutlined, Instag
 import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs';
 import Space from './space';
 
-const Hamburger = ({ user, isAuthed }: { user: any, isAuthed: boolean }) => {
+const Hamburger = ({ isAuthed }: { isAuthed: boolean }) => {
     const [clickedButton, setClickedButton] = useState<number | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
