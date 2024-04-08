@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
               variant="h5"
               sx={{ alignItems: "center", display: "flex", gap: "7px" }}
             >
-              <EmailIcon /> sweta@gmail.com
+              <EmailIcon /> doctor@gmail.com
             </Typography>
             <Typography
               variant="h5"
